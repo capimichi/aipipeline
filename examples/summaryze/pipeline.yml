@@ -1,0 +1,18 @@
+
+tasks:
+  - id: 'task_read_file'
+    type: 'ReadFileTask'
+    inputs:
+      file_path: 'input.txt'
+    outputs:
+      content: 'summarize_text.argument1'
+
+  - id: 'summarize_text'
+    type: 'AskAi'
+    inputs:
+      prompt: 'Summarize the following text: {{argument1}}'
+    outputs:
+      summary: 'summarize_text.text'
+
+  - id: 'write_summary'
+    type: 'WriteFileTask'
