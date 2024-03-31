@@ -14,7 +14,8 @@ class SummarizeTextTask(BaseTask):
         return ['text']
 
     def set_inputs(self, inputs):
-        self.text = inputs['text']
+        if('text' in inputs):
+            self.text = inputs['text']
 
     def run(self):
         llm_url = 'http://172.18.0.1:8000/v1'
