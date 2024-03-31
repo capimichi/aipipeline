@@ -10,7 +10,8 @@ class ReadFileTask(BaseTask):
         return ['file_path']
 
     def set_inputs(self, inputs):
-        self.file_path = inputs['file_path']
+        if('file_path' in inputs):
+            self.file_path = inputs['file_path']
 
     def run(self):
         with open(self.file_path, 'r') as file:
