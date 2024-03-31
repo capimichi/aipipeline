@@ -13,7 +13,8 @@ class GenerateFileNameTask(BaseTask):
         return ['content']
 
     def set_inputs(self, inputs):
-        self.content = inputs['content']
+        if('content' in inputs):
+            self.content = inputs['content']
 
     def run(self):
         llm_url = 'http://172.18.0.1:8000/v1'
