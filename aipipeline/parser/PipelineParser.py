@@ -12,7 +12,9 @@ class PipelineParser:
         self.task_parser = task_parser
 
     def run(self, pipeline: Pipeline):
-        pass
+        tasks = pipeline.tasks
+        for task in tasks:
+            self.task_parser.run(task, pipeline)
 
     def parse(self, pipeline_path):
         with open(pipeline_path, 'r') as stream:
