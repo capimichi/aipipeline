@@ -12,7 +12,17 @@ tasks:
     inputs:
       prompt: 'Summarize the following text: {{argument1}}'
     outputs:
-      summary: 'summarize_text.text'
+      response:
+        - 'write_summary.content'
+        - 'generate_file_name.argument1'
+
+  - id: 'generate_file_name'
+    type: 'AskAi'
+    inputs:
+      prompt: 'Generate the appropriate file name + extension for this content, write only the file name, do not include any explanation or context: {{argument1}}'
+    outputs:
+      response:
+          - 'write_summary.path'
 
   - id: 'write_summary'
     type: 'WriteFileTask'
