@@ -9,8 +9,10 @@ class WriteFileTask(BaseTask):
         return ['path', 'content']
 
     def set_inputs(self, inputs):
-        self.path = inputs['path']
-        self.content = inputs['content']
+        if('path' in inputs):
+            self.path = inputs['path']
+        if('content' in inputs):
+            self.content = inputs['content']
 
     def run(self):
         # check if directory exists
