@@ -15,3 +15,4 @@ default_container = DefaultContainer.get_instance()
 pipeline_parser:PipelineParser = default_container.get(PipelineParser.__name__)
 
 pipeline = pipeline_parser.parse(pipeline_path)
+pipeline_parser.run(pipeline)
