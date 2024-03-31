@@ -15,12 +15,13 @@ class TaskParser:
 
 
     def get_task_instance(self, task : Task):
+        task_id = task.id
         task_class = task.type
-        if not task_class in self.instances:
+        if not task_id in self.instances:
             task_class = getattr(importlib.import_module("aipipeline.task." + task_class), task_class)
             instance = task_class()
-            self.instances[task_class] = instance
-        return self.instances[task_class]
+            self.instances[task_id] = instance
+        return self.instances[task_id]
 
     def has_required_inputs(self, task_instance, task: Task, pipeline : Pipeline):
         required_inputs = task_instance.get_required_inputs()
