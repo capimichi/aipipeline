@@ -16,9 +16,12 @@ class AskAi(BaseTask):
         return ['prompt']
 
     def set_inputs(self, inputs):
-        self.prompt = inputs['prompt']
-        self.argument1 = inputs['argument1']
-        self.argument2 = inputs['argument2']
+        if('prompt' in inputs):
+            self.prompt = inputs['prompt']
+        if('argument1' in inputs):
+            self.argument1 = inputs['argument1']
+        if('argument2' in inputs):
+            self.argument2 = inputs['argument2']
 
     def run(self):
 
