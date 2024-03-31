@@ -3,7 +3,7 @@ tasks:
   - id: 'task_read_file'
     type: 'ReadFileTask'
     inputs:
-      file_path: 'input.txt'
+      file_path: 'examples/summaryze/input.txt'
     outputs:
       content: 'summarize_text.argument1'
 
@@ -13,8 +13,8 @@ tasks:
       prompt: 'Summarize the following text: {{argument1}}'
     outputs:
       response:
-        - 'write_summary.content'
         - 'generate_file_name.argument1'
+        - 'write_summary.content'
 
   - id: 'generate_file_name'
     type: 'AskAi'
