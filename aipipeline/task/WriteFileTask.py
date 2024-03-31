@@ -1,17 +1,24 @@
 from aipipeline.task.BaseTask import BaseTask
-
+import os
 
 class WriteFileTask(BaseTask):
-    file_path = None
-    file_content = None
+    path = None
+    content = None
 
-    def add_params(self, params):
-        self.file_path = params['file_path']
-        self.file_content = params['file_content']
+    def get_required_inputs(self):
+        return ['path', 'content']
+
+    def set_inputs(self, inputs):
+        self.path = inputs['path']
+        self.content = inputs['content']
 
     def run(self):
-        with open(self.file_path, 'w') as file:
-            file.write(self.file_content)
+        # check if directory exists
+        directory = os.path.dirname(self.path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        with open(self.path, 'w') as file:
+            file.write(self.content)
 
     def get_outputs(self):
-        return {'file_path': self.file_path}
+        return {'path': self.path}
