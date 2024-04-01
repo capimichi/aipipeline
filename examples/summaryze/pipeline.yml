@@ -5,7 +5,8 @@ tasks:
     inputs:
       file_path: 'examples/summaryze/input.txt'
     outputs:
-      content: 'summarize_text.argument1'
+      content:
+        - 'summarize_text.argument1'
 
   - id: 'summarize_text'
     type: 'AskAi'
