@@ -15,9 +15,10 @@ class WriteFileTask(BaseTask):
             self.content = inputs['content']
 
     def run(self):
-        # check if directory exists
+        # remove the double apex from the path
+        self.path = self.path.replace('"', "")
         directory = os.path.dirname(self.path)
-        if not os.path.exists(directory):
+        if len(directory) > 0 and not os.path.exists(directory):
             os.makedirs(directory)
         with open(self.path, 'w') as file:
             file.write(self.content)
