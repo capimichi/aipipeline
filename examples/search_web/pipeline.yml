@@ -1,0 +1,22 @@
+
+tasks:
+  - id: 'task_generate_searches'
+    type: 'AskAi'
+    inputs:
+      prompt: 'Generate a list of searches for google about ai in 2024'
+    outputs:
+      response:
+        - 'split_searches.content'
+
+  - id: 'split_searches'
+    type: 'SplitListTask'
+    outputs:
+      results:
+        - 'write_output.content'
+
+  - id: 'write_output'
+    type: 'WriteFileTask'
+    multiple: true
+    inputs:
+      path: 'out.txt'
+      append: true
