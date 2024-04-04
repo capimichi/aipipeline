@@ -4,6 +4,7 @@ import os
 class WriteFileTask(BaseTask):
     path = None
     content = None
+    append = False
 
     def get_required_inputs(self):
         return ['path', 'content']
@@ -13,6 +14,8 @@ class WriteFileTask(BaseTask):
             self.path = inputs['path']
         if('content' in inputs):
             self.content = inputs['content']
+        if('append' in inputs):
+            self.append = inputs['append']
 
     def run(self):
         # remove the double apex from the path
@@ -20,7 +23,10 @@ class WriteFileTask(BaseTask):
         directory = os.path.dirname(self.path)
         if len(directory) > 0 and not os.path.exists(directory):
             os.makedirs(directory)
-        with open(self.path, 'w') as file:
+        mode = 'w'
+        if self.append:
+            mode = 'a'
+        with open(self.path, mode) as file:
             file.write(self.content)
 
     def get_outputs(self):
