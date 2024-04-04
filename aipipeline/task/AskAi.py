@@ -26,12 +26,19 @@ class AskAi(BaseTask):
     def run(self):
 
         final_prompt = self.prompt
-        if(self.argument1 != None):
-            final_prompt = final_prompt.replace("{{argument1}}", self.argument1)
-        if(self.argument2 != None):
-            final_prompt = final_prompt.replace("{{argument2}}", self.argument2)
 
-        llm_url = 'http://172.18.0.1:8000/v1'
+        is_array = False
+
+        if(self.argument1 != None):
+            argument1 = self.argument1
+            final_prompt = final_prompt.replace('{{argument1}}', argument1)
+
+        if(self.argument2 != None):
+            argument2 = self.argument2
+            final_prompt = final_prompt.replace('{{argument2}}', argument2)
+
+        # llm_url = 'http://172.18.0.1:8000/v1'
+        llm_url = 'http://0.0.0.0:4000/v1'
         url = f'{llm_url}/chat/completions'
         response = requests.post(
             url=url,
